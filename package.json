@@ -15,5 +15,10 @@
     "bugs": {
         "url": "https://github.com/brianducca/challengeNode/issues"
     },
-    "homepage": "https://github.com/brianducca/challengeNode#readme"
+    "homepage": "https://github.com/brianducca/challengeNode#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "express-validator": "^6.6.1"
+    }
 }
