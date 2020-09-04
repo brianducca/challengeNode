@@ -15,12 +15,16 @@ exports.showByUserName = async(req, res, next) => {
     console.log(logMessage);
 
     var client = await users.filter((user) => { return user.name === req.params.userName })[0];
-    console.log(client.id);
+    if (!client) {
+        next({ statusCode: 404, message: "No policies found" });
+        return;
+    }
     var response = await policies.filter((item) => {
         return item.clientId == client.id;
     });
     if (!response.length) {
         next({ statusCode: 404, message: "No policies found" });
+        return;
     } else {
         res.send(response);
     }

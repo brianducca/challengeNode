@@ -59,14 +59,19 @@ exports.showByPolicieNumber = async(req, res, next) => {
         return;
     }
     console.log(logMessage);
+    var policie = await policies.filter((policie) => { return policie.id === req.params.policieN })[0];
 
-    var policie = policies.filter((policie) => { policie.id === req.params.policieN });
-
-    var response = users.filter((item) => {
+    if (!policie) {
+        next({ statusCode: 404, message: "No users found" });
+        return;
+    }
+    var response = await users.filter((item) => {
         return item.id === policie.clientId;
     });
+
     if (!response.length) {
         next({ statusCode: 404, message: "No users found" });
+        return;
     } else {
         res.send(response[0]);
     }

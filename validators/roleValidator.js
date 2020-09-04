@@ -1,6 +1,6 @@
 const { body, param, query, header } = require('express-validator');
 const adminRole = "admin";
-const userRole = "user";
+const userRole = "users";
 
 exports.roleAdminExist = header("role")
     .notEmpty()
